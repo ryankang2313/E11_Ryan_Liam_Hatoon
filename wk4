@@ -63,7 +63,7 @@ while True:
     except RuntimeError:
         print("Unable to read from sensor, retrying...")
         continue
-    csv.writerow([time.time(),aqdata["pm10 standard"], aqdata["pm25 standard"], aqdata["pm100 standard"]])
+    csvwriter.writerow([time.time(),aqdata["pm10 standard"], aqdata["pm25 standard"], aqdata["pm100 standard"]])
     
     print()
     print("Concentration Units (standard)")
