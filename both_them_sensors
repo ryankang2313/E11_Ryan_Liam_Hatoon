@@ -112,5 +112,4 @@ while count < run_time:
 
   print("time","\nTemperature: %0.1f C" % bme680.temperature,"Gas: %d ohm" % bme680.gas,"Humidity: %0.1f %%" % bme680.relative_humidity,"Pressure: %0.3f hPa" % bme680.pressure,"Altitude = %0.2f meters" % bme680.altitude)
   
-  i=i+1
 file.close()
