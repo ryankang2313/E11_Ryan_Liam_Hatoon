@@ -79,7 +79,7 @@ while count < run_time:
   print("taking data entry:",count)
   time.sleep(1) 
 
-    try:
+  try:
         aqdata = pm25.read()
         # print(aqdata)
     except RuntimeError:
