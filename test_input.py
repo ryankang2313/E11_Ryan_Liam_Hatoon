@@ -10,7 +10,7 @@ else:
   run_time = int(sys.argv[1])
   
 count=0
-while count < run_time
+while count < run_time:
   count += 1
   print("taking data entry:",count)
   time.sleep(1) 
