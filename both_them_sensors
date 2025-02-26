@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
+l# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
 # SPDX-License-Identifier: MIT
 
 """
@@ -25,7 +25,7 @@ bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c)
 # change this to match the location's pressure (hPa) at sea level
 bme680.sea_level_pressure = 1013.25
 
-file = open('aquality.csv','w', newline = None)
+file = open('metal_aquality.csv','w', newline = None)
 
 csvwriter = csv.writer(file, delimiter=',')
 
