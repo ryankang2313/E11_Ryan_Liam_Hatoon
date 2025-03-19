@@ -1,40 +1,38 @@
-import RPi.GPIO as GPIO
-import time
-import datetime
+GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+if GPIO.input(channel):
+    print('Input was HIGH')
+else:
+    print('Input was LOW')
 
-# Define GPIO pin for the radiation sensor
-SENSOR_PIN = 16  # Change this if using a different pin
+while GPIO.input(channel) == GPIO.LOW:
+    time.sleep(0.01)  # wait 10 ms to give CPU chance to do other things
 
-# Global variable for counting pulses
-pulse_count = 0
+GPIO.wait_for_edge(channel, GPIO.RISING)
 
-# Callback function to count pulses and print timestamp
-def count_pulse(channel):
-    global pulse_count
-    pulse_count += 1
-    print(f"▲ Pulse detected at {datetime.datetime.now()}")
+channel = GPIO.wait_for_edge(channel, GPIO_RISING, timeout=5000)
+if channel is None:
+    print('Timeout occurred')
+else:
+    print('Edge detected on channel', channel)
 
-# Setup GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(SENSOR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # Use pull-down resistor
+GPIO.add_event_detect(channel, GPIO.RISING)  # add rising edge detection on a channel
+do_something()
+if GPIO.event_detected(channel):
+    print('Button pressed')
 
-# Detect falling-edge pulses
-GPIO.add_event_detect(SENSOR_PIN, GPIO.FALLING, callback=count_pulse, bouncetime=10)
+def my_callback(channel):
+    print('This is a edge event callback function!')
+    print('Edge detected on channel %s'%channel)
+    print('This is run in a different thread to your main program')
 
-try:
-    while True:
-        # Wait for a minute while counting pulses
-        time.sleep(60)
+GPIO.add_event_detect(channel, GPIO.RISING, callback=my_callback)  # add rising edge detection on a channel
 
-        # Print pulse count every minute
-        print(f"▼ Counts in last minute: {pulse_count}")
+def my_callback_one(channel):
+    print('Callback one')
 
-        # Reset count for next minute
-        pulse_count = 0
+def my_callback_two(channel):
+    print('Callback two')
 
-except KeyboardInterrupt:
-    print("\nExiting program...")
-
-finally:
-    GPIO.cleanup()
-    print("GPIO cleanup complete.")
+GPIO.add_event_detect(channel, GPIO.RISING)
+GPIO.add_event_callback(channel, my_callback_one)
+GPIO.add_event_callback(channel, my_callback_two)
