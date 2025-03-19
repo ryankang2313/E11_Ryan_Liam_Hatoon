@@ -20,7 +20,7 @@ try:
     GPIO.setup(GPIO_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
     # Falling-edge detection with debounce
-    GPIO.add_event_detect(GPIO_PIN, GPIO.FALLING, callback=pulse_callback, bouncetime=BOUNCE_TIME)
+    GPIO.add_event_detect(GPIO_PIN, GPIO.RISING, callback=pulse_callback, bouncetime=BOUNCE_TIME)
 
     print("Waiting for pulses on GPIO pin {}...".format(GPIO_PIN))
 
