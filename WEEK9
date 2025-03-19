@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 
 
-GPIO_PIN = 18  
+GPIO_PIN = 16 
 BOUNCE_TIME = 200  
 
 
