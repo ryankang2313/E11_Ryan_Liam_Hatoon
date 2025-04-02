@@ -41,7 +41,6 @@ try:
        
         count = 0
 
-print(sys.argv)
 if len(sys.argv) < 2:
   print("this script requires an input argument specifying the run time in seconds")
   exit()
