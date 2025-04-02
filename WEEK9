@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 from datetime import datetime
+import sys
 
 
 GPIO_PIN = 16 
