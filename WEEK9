@@ -10,7 +10,7 @@ global count
 count = 0 
 
 
-output_file = "CountDataAl3.csv"
+output_file = "CountDataTung.csv"
 
 
 with open(output_file, mode='w') as file:
