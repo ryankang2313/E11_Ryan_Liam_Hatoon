@@ -34,11 +34,32 @@ try:
     
     while True:
         
-        time.sleep(60)
+        time.sleep(10)
         
         print("Total counts in the last minute: {}".format(count))
        
         count = 0
+
+print(sys.argv)
+if len(sys.argv) < 2:
+  print("this script requires an input argument specifying the run time in seconds")
+  exit()
+  # run_time = 10
+else:
+  run_time = int(sys.argv[1])
+  
+count=0
+while count < run_time:
+  count += 1
+  print("taking data entry:",count)
+  time.sleep(1) 
+
+  try:
+    aqdata = pm25.read()
+    # print(aqdata)
+  except RuntimeError:
+    print("Unable to read from sensor, retrying...")
+    continue
 
 except KeyboardInterrupt:
     print("\nExiting program...")
