@@ -10,6 +10,13 @@ global count
 count = 0 
 
 
+output_file = "CountData.csv"
+
+
+with open(output_file, mode='w') as file:
+    file.write("Timestamp,Count in Last 10 Seconds\n")
+
+
 def count_callback(channel):
     global count
     count += 1
@@ -37,7 +44,14 @@ try:
         
         time.sleep(10)
         
-        print("Total counts in the last minute: {}".format(count))
+
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+        print("Total counts in the last 10 seconds: {}".format(count))
+        
+
+        with open(output_file, mode='a') as file:
+            file.write("{},{}\n".format(timestamp, count))
+        
         count = 0
 
 except KeyboardInterrupt:
