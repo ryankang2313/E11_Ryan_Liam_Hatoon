@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 import sys
 
-GPIO_PIN = 16 
+GPIO_PIN = 17
 BOUNCE_TIME = 200  
 
 global count
